@@ -5,8 +5,11 @@ import 'dart:math';
 
 import 'package:ffi/ffi.dart';
 
-typedef openWindow_func = Void Function(Int32 a, Int32 b, Pointer<Utf8> title);
-typedef openWindow = void Function(int a, int b, Pointer<Utf8> title);
+typedef openWindow_func = Void Function(Int32 a, Int32 b);
+typedef openWindow = void Function(int a, int b);
+
+typedef setTitle_func = Void Function(Pointer<Utf8> title);
+typedef setTitle = void Function(Pointer<Utf8> title);
 
 typedef isClosed_func = Int32 Function();
 typedef isClosed = int Function();
@@ -23,12 +26,14 @@ main()
   final dylib = ffi.DynamicLibrary.open(path);
 
   final openWindow openWindowD = dylib.lookup<ffi.NativeFunction<openWindow_func>>('openWindow').asFunction();
+  final setTitle setTitleD = dylib.lookup<ffi.NativeFunction<setTitle_func>>('setTitle').asFunction();
   final isClosed isClosedD = dylib.lookup<ffi.NativeFunction<isClosed_func>>('isClosed').asFunction();
   final display displayD = dylib.lookup<ffi.NativeFunction<display_func>>('display').asFunction();
   final setPixel setPixelD = dylib.lookup<ffi.NativeFunction<setPixel_func>>('setPixel').asFunction();
 
   // Call the function
-  openWindowD(1024,1024,"Dart".toNativeUtf8());
+  openWindowD(1024,1024);
+  setTitleD("Dart".toNativeUtf8());
   
   int offset = 0;
   while(isClosedD()==0)

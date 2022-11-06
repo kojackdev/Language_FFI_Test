@@ -3,7 +3,8 @@ module testd;
 import std.stdio;
 import std.math;
 
-extern (C) void openWindow(uint width, uint height,const char *title);
+extern (C) void openWindow(uint width, uint height);
+extern (C) void setTitle(const char *title);
 extern (C) void setPixel(uint x, uint y, float r, float g, float b);
 extern (C) void clear(float r, float g, float b);
 extern (C) void saveBMP(const char *filename);
@@ -13,7 +14,8 @@ extern (C) uint isClosed();
 int main()
 {
 
-    openWindow(1024,1024,"D");
+    openWindow(1024,1024);
+	setTitle("D");
 	clear(0.5,0.5,0.5);
 	int offset=0;
 	while(!isClosed())

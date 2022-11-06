@@ -3,7 +3,8 @@ use std::os::raw::c_char;
 
 #[link(name = "../lib/cimgc")]
 extern {
-  fn openWindow(width:u32,height:u32,title:*const c_char);
+  fn openWindow(width:u32,height:u32);
+  fn setTitle(title:*const c_char);
   fn setPixel(x:u32,y:u32,r:f32,g:f32,b:f32);
   fn clear(r:f32,g:f32,b:f32);
   fn saveBMP(filename:*const c_char);
@@ -12,11 +13,10 @@ extern {
 }
 
 fn main() {
-	let s = CString::new("data data data data").expect("CString::new failed");
-	let name = CString::new("test.bmp").expect("CString::new failed");
 	unsafe
 	{
-		openWindow(1024,1024,s.as_ptr());
+		openWindow(1024,1024);
+		setTitle(CString::new("Rust").expect("CString::new failed").as_ptr());
 		clear(0.0,1.0,0.0);
 		let mut offset = 0;
 		while isClosed()==0

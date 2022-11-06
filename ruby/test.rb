@@ -4,13 +4,15 @@ RubyInstaller::Runtime.add_dll_directory('../lib')
 
 libm = Fiddle.dlopen('cimgc.dll')
 
-openWindow = Fiddle::Function.new(libm['openWindow'], [Fiddle::TYPE_INT, Fiddle::TYPE_INT, Fiddle::TYPE_VOIDP], Fiddle::TYPE_VOID)
+openWindow = Fiddle::Function.new(libm['openWindow'], [Fiddle::TYPE_INT, Fiddle::TYPE_INT], Fiddle::TYPE_VOID)
+setTitle = Fiddle::Function.new(libm['setTitle'], [Fiddle::TYPE_VOIDP], Fiddle::TYPE_VOID)
 clear = Fiddle::Function.new(libm['clear'], [Fiddle::TYPE_FLOAT, Fiddle::TYPE_FLOAT, Fiddle::TYPE_FLOAT], Fiddle::TYPE_VOID)
 display = Fiddle::Function.new(libm['display'], [], Fiddle::TYPE_VOID)
 setPixel = Fiddle::Function.new(libm['setPixel'], [Fiddle::TYPE_INT, Fiddle::TYPE_INT, Fiddle::TYPE_FLOAT, Fiddle::TYPE_FLOAT, Fiddle::TYPE_FLOAT], Fiddle::TYPE_VOID)
 isClosed = Fiddle::Function.new(libm['isClosed'], [], Fiddle::TYPE_INT)
 
-openWindow.call(1024,1024,0)
+openWindow.call(1024,1024)
+setTitle.call("Ruby")
 clear.call(0.5,1,0.5)
 offset=0
 while isClosed.call()==0

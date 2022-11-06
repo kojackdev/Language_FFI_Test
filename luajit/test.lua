@@ -1,6 +1,7 @@
 local ffi = require("ffi")
 ffi.cdef[[
-void openWindow(unsigned int width, unsigned int height, const char *name);
+void openWindow(unsigned int width, unsigned int height);
+void setTitle(const char *name);
 void setPixel(unsigned int x, unsigned int y, float r, float g, float b);
 void display();
 void clear(float r, float g, float b);
@@ -8,7 +9,8 @@ unsigned int isClosed();
 ]]
 local cimgc = ffi.load("../lib/cimgc")
 
-cimgc.openWindow(1024,1024,"Lua")
+cimgc.openWindow(1024,1024)
+cimgc.setTitle("Lua")
 
 offset=0
 while cimgc.isClosed()==0 do

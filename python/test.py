@@ -1,10 +1,11 @@
 from ctypes import *
 import math
-#import ctypes
+
 so_file = "../lib/cimgc.dll"
 cimgc = WinDLL(so_file)
 
-cimgc.openWindow(1024,1024,"Python")
+cimgc.openWindow(1024,1024)
+cimgc.setTitle("Python".encode('utf-8'))
 cimgc.clear(c_float(0.5),0,0)
 
 

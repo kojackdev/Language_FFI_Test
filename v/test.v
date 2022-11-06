@@ -1,9 +1,11 @@
 import math
-#flag -l../lib/cimgc
+#flag -lcimgc
 #flag -I../lib
+#flag -L../lib
 #include "cimgc.h"
 
 fn C.openWindow(width int, height int)
+fn C.setTitle(title &char)
 fn C.isClosed() int
 fn C.display()
 fn C.setPixel(x u32, y u32, r f32, g f32, b f32)
@@ -13,11 +15,12 @@ fn C.saveBMP(name &char)
 
 fn main() {
 	C.openWindow(1024, 1024)
+	C.setTitle(c'V')
 	mut offset:=0
 	mut dx := 0.0
 	mut dy := 0.0
 	mut r := 301.0
-	for C.isClosed()==0 
+	for C.isClosed()==0
 	{
 		for y in 0 .. 1023 
 		{

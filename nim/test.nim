@@ -1,13 +1,15 @@
 import math
 
-proc openWindow(width:uint32, height:uint32, title: cstring): void {.importc, dynlib: "../lib/cimgc.dll".}
+proc openWindow(width:uint32, height:uint32): void {.importc, dynlib: "../lib/cimgc.dll".}
+proc setTitle(title: cstring): void {.importc, dynlib: "../lib/cimgc.dll".}
 proc setPixel(x:uint32, y:uint32, r:float32, g:float32, b:float32): void {.importc, dynlib: "../lib/cimgc.dll".}
 proc clear(r:float32, g:float32, b:float32): void {.importc, dynlib: "../lib/cimgc.dll".}
 proc saveBMP(filename: cstring): void {.importc, dynlib: "../lib/cimgc.dll".}
 proc display(): void {.importc, dynlib: "../lib/cimgc.dll".}
 proc isClosed(): uint32 {.importc, dynlib: "../lib/cimgc.dll".}
 
-openWindow(1024,1024,"Test Nim")
+openWindow(1024,1024)
+setTitle("Nim")
 clear(0.0,0.0,0.0)
 var offset:int32=0
 while(isClosed()==0):

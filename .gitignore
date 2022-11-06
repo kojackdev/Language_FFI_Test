@@ -1,0 +1,5 @@
+/csharp/Test/.vs/
+/csharp/Test/Test/obj/
+*.exe
+*.obj
+*.pdb
