@@ -1,0 +1,1 @@
+rustc -O test.rs

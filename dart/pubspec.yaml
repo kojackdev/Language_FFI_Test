@@ -1,0 +1,6 @@
+name: my_app
+dependencies:
+  ffi:
+environment:
+  sdk: '>=2.12.0'
+  
