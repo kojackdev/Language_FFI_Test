@@ -1,0 +1,5 @@
+cimg.h is licensed under the CeCILL-C V1 license. Please see license/Licence_CeCILL-C_V1-en.txt for details.
+
+The cimgc library is licensed under the MIT license. Please see license/mit_license.txt for details.
+
+The language tests are public domain.
